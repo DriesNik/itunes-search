@@ -9,12 +9,18 @@ function ItunesService(){
 		var songList = response.results.map(function (song){
 		return{
 		
-		title = song.trackName
+		title: song.trackName,
+		album: song.collectionName,
+		artist: song.artistName,
+		art: song.artworkUrl60,
+		genre: song.primaryGenreName,
 		
 		
 		
-		}
-		}
+		};
+		})
+		$('#get-music-button').text('GET MUSIC');
+        return songList;
+		})
 	}
 	}
-}
