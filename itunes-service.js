@@ -24,3 +24,21 @@ function ItunesService(){
 		})
 	}
 	}
+function getSearch(){
+	var iApi = "https://itunes.apple.com/search?term=";
+	var userInput = getInput();
+	var url = iApi + userInput
+	$.ajax({
+		url : url,
+		method: 'get',
+		data: {term:userInput},
+		dataType:"jsonp"
+	});
+}
+
+function getInput()
+{
+	var input = document.getElementById("userInput").value;
+	
+	return input;
+}

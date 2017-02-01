@@ -19,6 +19,8 @@ function itunesController(){
 		
 		
 		
-	}
+	
+	 document.getElementById("song-list").innerHTML = template
+		}
 }
 }

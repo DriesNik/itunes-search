@@ -1,3 +1,3 @@
 function mainControl(){
-	itunesController();
+	getSearch();
 }
