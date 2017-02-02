@@ -43,19 +43,20 @@ $.ajax({
 };
 	
 	function clearTable(){
-		$("#table").empty();
+		$("#tables").empty();
 		
 	}
 
 
   function showMatch(data){
 	  
-	  $('#table').append(
+	  $('#tables').append(
 	  "<tr> <th>Artist Name</th> <th>Song Name</th> <th>Genre</th> <th>Art</th>  </tr>"
 	  )
 	  for(var i =0;i<data.resultCount;i++)
   {
-    $('#table').append(
+	  var typing = "audio/mpeg";
+    $('#tables').append(
       
      
 	
@@ -64,6 +65,8 @@ $.ajax({
     "<td>" + " " + data.results[i].trackName + "</td>" +
     "<td>" + " " + data.results[i].primaryGenreName + "</td>" +
 	"<td>" + "<img src = "+data.results[i].artworkUrl100 + ">" + "</td>" +
+	
+	"<td>" + "<audio controls> "+"<source src= " + data.results[i].previewUrl + " type =" + typing + "> " +  "</audio> " + "</td>" +
   "</tr>"
   
     );
