@@ -26,33 +26,46 @@ function ItunesService(){
 	}
 	function getSong()
 {
-var api = 'https://itunes.apple.com/search?limit=5&term='
-var song = document.getElementById("userInput").value;
-var url = api + song;
+	clearTable();
+var iapi = 'https://itunes.apple.com/search?limit=10&term='
+var id = document.getElementById("userInput").value;
+var url = iapi + id;
 
 $.ajax({
   url: url,
   method: 'get',
-  data: {term:song},
+  data: {term:id},
   dataType: 'jsonp',
   success: function(data) {
-    showMatch(data);
+   new showMatch(data);
     }
   })
 };
 	
-	
+	function clearTable(){
+		$("#table").empty();
+		
+	}
 
 
   function showMatch(data){
+	  
+	  $('#table').append(
+	  "<tr> <th>Artist Name</th> <th>Song Name</th> <th>Genre</th> <th>Art</th>  </tr>"
+	  )
 	  for(var i =0;i<data.resultCount;i++)
   {
     $('#table').append(
       
-      "<ul>"
-    +  "Artist: " + data.results[i].artistName + " " + "</ul>" +
-    "<ul>"  + "Song: " + data.results[i].trackName + " " + "</ul>" +
-    "<ul>"  + "Album: " + data.results[i].collectionName + " " + "</ul>"
+     
+	
+	"<tr>" +
+    "<td>" + " " + data.results[i].artistName + "</td>" +
+    "<td>" + " " + data.results[i].trackName + "</td>" +
+    "<td>" + " " + data.results[i].primaryGenreName + "</td>" +
+	"<td>" + "<img src = "+data.results[i].artworkUrl100 + ">" + "</td>" +
+  "</tr>"
+  
     );
     
   };
