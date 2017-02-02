@@ -24,21 +24,37 @@ function ItunesService(){
 		})
 	}
 	}
-function getSearch(){
-	var iApi = "https://itunes.apple.com/search?term=";
-	var userInput = getInput();
-	var url = iApi + userInput
-	$.ajax({
-		url : url,
-		method: 'get',
-		data: {term:userInput},
-		dataType:"jsonp"
-	});
-}
-
-function getInput()
+	function getSong()
 {
-	var input = document.getElementById("userInput").value;
+var api = 'https://itunes.apple.com/search?limit=5&term='
+var song = document.getElementById("userInput").value;
+var url = api + song;
+
+$.ajax({
+  url: url,
+  method: 'get',
+  data: {term:song},
+  dataType: 'jsonp',
+  success: function(data) {
+    showMatch(data);
+    }
+  })
+};
 	
-	return input;
-}
+	
+
+
+  function showMatch(data){
+	  for(var i =0;i<data.resultCount;i++)
+  {
+    $('#table').append(
+      
+      "<ul>"
+    +  "Artist: " + data.results[i].artistName + " " + "</ul>" +
+    "<ul>"  + "Song: " + data.results[i].trackName + " " + "</ul>" +
+    "<ul>"  + "Album: " + data.results[i].collectionName + " " + "</ul>"
+    );
+    
+  };
+	  
+  }
